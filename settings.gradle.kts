@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Android(Kotlin Notes Application"
+rootProject.name = "Android Kotlin Notes Application"
 include(":app")
