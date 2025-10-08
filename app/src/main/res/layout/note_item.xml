@@ -30,6 +30,24 @@
                 android:textSize="22sp"
                 android:textStyle="bold"/>
 
+            <ImageView
+                android:id="@+id/noteUpdateButton"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/edit_icon"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="50dp"
+                app:tint="@color/my_light_primary" />
+
+            <ImageView
+                android:id="@+id/noteDeleteButton"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/delete_icon"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="20dp"
+                app:tint="@color/my_light_primary" />
+
         </RelativeLayout>
 
         <TextView

@@ -1,11 +1,11 @@
-package com.example.androidkotlinnotesapplication
+package com.example.androidkotlinnotesapplication.Data
 
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class NotesDatabaseHelper (context: Context) : SQLiteOpenHelper (context, DATABASE_NAME, null, DATABASE_VERSION) {
+class NotesDatabaseHelper (context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     companion object{
         private const val DATABASE_NAME = "notesapp.db"
@@ -54,5 +54,28 @@ class NotesDatabaseHelper (context: Context) : SQLiteOpenHelper (context, DATABA
         return notesList
     }
 
+    fun updateNote(note: Note){
+        val db = this.writableDatabase
+        val values = ContentValues().apply {
+            put(COLUMN_TITLE, note.title)
+            put(COLUMN_CONTENT, note.content)
+        }
+        db.update(TABLE_NAME, values, "$COLUMN_ID = ?", arrayOf(note.id.toString()))
+        db.close()
+    }
 
+    fun getNoteById(id: Int): Note? {
+        val db = this.readableDatabase
+        val selectQuery = "SELECT * FROM $TABLE_NAME WHERE $COLUMN_ID = ?"
+        val cursor = db.rawQuery(selectQuery, arrayOf(id.toString()))
+        var note: Note? = null
+        if (cursor.moveToFirst()) {
+            val title = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITLE))
+            val content = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CONTENT))
+            note = Note(id, title, content)
+        }
+        cursor.close()
+        db.close()
+        return note
+    }
 }

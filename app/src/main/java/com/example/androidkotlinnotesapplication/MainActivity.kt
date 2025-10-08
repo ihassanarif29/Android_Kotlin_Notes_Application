@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.androidkotlinnotesapplication.Adapters.NotesAdapter
+import com.example.androidkotlinnotesapplication.Data.NotesDatabaseHelper
 import com.example.androidkotlinnotesapplication.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
